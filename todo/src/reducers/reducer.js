@@ -30,7 +30,26 @@ export const reducer = (state, action) => {
                     ...state.todos, 
                     newItem
                 ]
-            }
+            };
+        case 'TOGGLE_TODO_ITEM':
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if(action.payload === todo.id) {
+                        return {
+                            ...todo,
+                            completed: !todo.completed
+                        };
+                    } else {
+                        return todo;
+                    }
+                })
+            };
+        case 'CLEAR_COMPLETED':
+            return {
+                ...state,
+                todos: state.todos.filter(todo => !todo.completed)
+            };
         default:
             return state;
     }

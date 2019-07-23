@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Todos = () => {
+import Todo from './Todo';
+import AddTodoForm from './AddTodoForm';
+
+const Todos = (props) => {
     return (
         <div>
-
+            <AddTodoForm addItem={props.addItem} />
+            {props.todos.map(todo => (
+                <Todo key={todo.id} todo={todo} />
+            ))}
         </div>
     )
 }
